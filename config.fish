@@ -96,8 +96,6 @@ end
 # Set up keybindings
 bind "?" _atuin_ai_question_mark
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
-
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/prad/.lmstudio/bin
 # End of LM Studio CLI section
