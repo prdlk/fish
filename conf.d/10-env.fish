@@ -11,6 +11,19 @@ set -gx HSA_OVERRIDE_GFX_VERSION 11.5.0
 set -gx ROCR_VISIBLE_DEVICES 0
 set -gx HIP_VISIBLE_DEVICES 0
 
+# Thunderbolt eGPU (RTX 5060 Ti) is CUDA-only. niri and Umbriel start through
+# a fish login shell, so this reaches the compositor and every app: EGL via
+# Mesa, Vulkan via RADV. Otherwise glvnd loads libEGL_nvidia and the Vulkan
+# loader the NVIDIA ICD in every process, and they open /dev/nvidiactl and
+# hold the eGPU. Vulkan on the eGPU also crashes the machine: LM Studio's
+# engine survey through the NVIDIA ICD (app, or the llmster daemon that `lms`
+# starts) drops the card off the bus (Xid 79) and the platform resets (data
+# fabric sync flood). CUDA uses neither loader. Gated on the Strix Halo iGPU.
+if test -e /dev/dri/by-path/pci-0000:c4:00.0-render
+    set -gx __EGL_VENDOR_LIBRARY_FILENAMES /usr/share/glvnd/egl_vendor.d/50_mesa.json
+    set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/radeon_icd.json
+end
+
 set -gx EGET_BIN $HOME/.local/bin
 
 # Repo roots (ghq)
