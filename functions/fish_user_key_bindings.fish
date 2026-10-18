@@ -17,7 +17,7 @@ function fish_user_key_bindings
         # omp-session resumes or starts omp for the repo (same in zsh); when it
         # opens the omp-sessions cable and it is cancelled, it steps back up.
         # ctrl-n: always a new omp session.
-        bind -M $mode ctrl-e 'nvim repaint'
+        bind -M $mode ctrl-e 'nvim; commandline -f repaint'
         bind -M $mode ctrl-b purple repaint
         bind -M $mode ctrl-y clip-last
 
