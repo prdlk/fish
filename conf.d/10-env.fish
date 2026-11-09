@@ -52,6 +52,16 @@ if not set -q GITHUB_TOKEN; and command -q gh
     test -n "$_gh_token"; and set -gx GITHUB_TOKEN $_gh_token
 end
 
+# free-router (localhost freellmapi): FREE_ROUTER_PORT, FREE_ROUTER_API_KEY.
+# KEY=VALUE file shared with free-router.service and bash/zsh; only present on
+# desktop/laptop roles of the chezmoi repo.
+if test -r ~/.config/free-router/env
+    for _line in (string match -rv '^\s*(#|$)' < ~/.config/free-router/env)
+        set -gx (string split -m1 = -- $_line)
+    end
+    set -e _line
+end
+
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
