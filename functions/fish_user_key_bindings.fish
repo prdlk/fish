@@ -3,6 +3,9 @@ function fish_user_key_bindings
     # re-triggers this function via the fish_key_bindings handler, so custom
     # binds must come after it to land on top.
     fish_vi_key_bindings
+    # No visual mode: `v` in normal mode (the only key that enters it) does
+    # nothing.
+    bind --preset -e -M default v
 
     # Vi mode types in `insert`; bind customs there AND in `default` (normal)
     # so the keys work regardless of mode.
