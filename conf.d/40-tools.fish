@@ -1,6 +1,6 @@
 # Tool initialization.
 # mise provides tool shims, so activate it for every shell (scripts included).
-mise activate fish | source
+command -q mise; and mise activate fish | source
 
 # Everything below spawns subprocesses or only matters for a prompt —
 # skip it for non-interactive shells to keep scripts fast.

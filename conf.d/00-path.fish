@@ -1,5 +1,17 @@
 # PATH — runs for every shell (scripts need these too).
-# ~/.local/bin and ~/.cargo/bin are handled by inir-path.fish / rustup.fish.
+# ~/.local/bin comes first here: mise.run installs mise there (Ubuntu), and
+# 40-tools.fish needs it before inir-path.fish (which also adds it) runs.
+# ~/.cargo/bin is handled by rustup.fish.
+fish_add_path $HOME/.local/bin
+
+# Homebrew (macOS): formulae and casks from .chezmoidata/packages.yaml.
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
+    if test -x $brew
+        $brew shellenv fish | source
+        break
+    end
+end
+
 fish_add_path $HOME/.bun/bin
 fish_add_path $HOME/.local/share/go/bin
 fish_add_path $HOME/.maestro/bin

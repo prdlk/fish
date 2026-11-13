@@ -6,7 +6,7 @@
 alias e nvim
 alias vim nvim
 alias e.f 'cd ~/.local/share/chezmoi/dot_config/fish && yazi'
-alias e.h 'cd ~/.local/share/chezmoi/dot_config/hypr && yazi'
+alias e.h 'cd ~/.local/share/omarchy-desktop/dot_config/hypr && yazi'
 alias e.k 'yazi ~/.config/kitty'
 alias e.n 'yazi ~/.local/share/chezmoi/dot_config/niri'
 alias e.y 'yazi ~/.config/yazi'
